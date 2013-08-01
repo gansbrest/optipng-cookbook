@@ -37,7 +37,7 @@ bash "compile_optipng_source" do
 
   not_if do
     node['optipng']['source']['force_recompile'] == false &&
-      node.automatic_attrs['optipng']['source']['version'] == node['optipng']['source']['version']
+      ::File.exists?(src_filepath)
   end
 end
 
