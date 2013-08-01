@@ -34,7 +34,7 @@ bash "compile_optipng_source" do
     make && make install
   EOH
 
-  Chef::Log.info "RECCCOMMMP - " + (node['optipng']['source']['force_recompile'] == false)
+  Chef::Log.info "RECCCOMMMP - " + (node['optipng']['source']['force_recompile'] == false).to_s
   Chef::Log.info "RECCCOMMMP - " + ::File.exists?(src_filepath).to_s
   not_if do
     node['optipng']['source']['force_recompile'] == false &&
