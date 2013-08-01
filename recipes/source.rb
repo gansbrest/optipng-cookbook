@@ -36,7 +36,7 @@ bash "compile_optipng_source" do
   EOH
 
   not_if do 
-    default['optipng']['source']['force_recompile'] == false && ::File.directory?(File.basename(src_filepath, ".tar.gz"))
+    node['optipng']['source']['force_recompile'] == false && ::File.directory?(File.basename(src_filepath, ".tar.gz"))
   end
 end
 
