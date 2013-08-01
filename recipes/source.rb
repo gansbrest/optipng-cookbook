@@ -35,7 +35,7 @@ bash "compile_optipng_source" do
   EOH
 
   Chef::Log.info "RECCCOMMMP - #{node['optipng']['source']['force_recompile']}"
-  Chef::Log.info "RECCCOMMMP - " + ::File.exists?(src_filepath)
+  Chef::Log.info "RECCCOMMMP - " + ::File.exists?(src_filepath).to_s
   not_if do
     node['optipng']['source']['force_recompile'] == false &&
       ::File.exists?(src_filepath)
