@@ -30,13 +30,14 @@ end
 bash "compile_optipng_source" do
   cwd ::File.dirname(src_filepath)
   code <<-EOH
+    tar zxf #{::File.basename(src_filepath)} -C #{::File.dirname(src_filepath)}
     cd optipng-#{node['optipng']['source']['version']} &&
     ./configure #{node['optipng']['source']['default_configure_flags'].join(" ")} &&
     make && make install
   EOH
 
   not_if do 
-    node['optipng']['source']['force_recompile'] == false && ::File.directory?(File.basename(src_filepath, ".tar.gz"))
+    node['optipng']['source']['force_recompile'] == false && ::File.directory?(::File.dirname(src_filepath) + '/' + ::File.basename(src_filepath, ".tar.gz"))
   end
 end
 
