@@ -20,7 +20,8 @@
 
 src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/optipng-#{node['optipng']['source']['version']}.tar.gz"
 
-remote_file node['optipng']['source']['url'] do
+remote_file node['optipng']['source']['url']
+  path src_filepath
   checksum node['optipng']['source']['checksum']
   source node['optipng']['source']['url']
   backup false
