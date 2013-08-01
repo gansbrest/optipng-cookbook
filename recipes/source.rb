@@ -35,6 +35,7 @@ bash "compile_optipng_source" do
     make && make install
   EOH
 
+  Chef::Log.info "SRCCCCC " + src_filepath
   not_if { ::File.exists?(src_filepath) }
 end
 
