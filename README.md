@@ -3,21 +3,26 @@ Description
 
 Install optipng.
 
+> OptiPNG is a PNG optimizer that recompresses image files to a smaller size, without losing any information. This program also converts external formats (BMP, GIF, PNM and TIFF) to optimized PNG, and performs PNG integrity checks and corrections. 
+
 Requirements
 ============
 
 ## Platform:
 
-* Ubuntu
+* Ubuntu - default package recipe
+* ALL - source recipe
 
 ## Coobooks:
 
 * apt
+* build-essential
 
 Attributes
 ==========
 
-See `attributes/default.rb` for default values.
+`attributes/default.rb`
+`attributes/source.rb`
 
 Recipes
 =======
@@ -25,12 +30,19 @@ Recipes
 default
 -------
 
-Launch the "install" recipe.
+Installs optipng from package manager ( Ubuntu at the moment ).
+
+source
+-------
+
+Compiles opting from source.
+
 
 Usage
 =====
 
 Include `recipe[optipng]` on systems where you want to install optipng.
+Include `recipe[optipng::source]` to compile from source. Make sure to update source attributes in that case.
 
 License and Author
 ==================
