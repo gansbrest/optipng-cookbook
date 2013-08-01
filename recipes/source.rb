@@ -20,10 +20,9 @@
 
 src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/optipng-#{node['optipng']['source']['version']}.tar.gz"
 
-remote_file node['optipng']['source']['url'] do
+remote_file src_filepath do
   checksum node['optipng']['source']['checksum']
   source node['optipng']['source']['url']
-  path src_filepath
   backup false
 end
 
@@ -35,6 +34,8 @@ bash "compile_optipng_source" do
     make && make install
   EOH
 
+  Chef::Log.info "RECCCOMMMP - #{node['optipng']['source']['force_recompile']}"
+  Chef::Log.info "RECCCOMMMP - " + ::File.exists?(src_filepath)
   not_if do
     node['optipng']['source']['force_recompile'] == false &&
       ::File.exists?(src_filepath)
