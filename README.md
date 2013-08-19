@@ -30,19 +30,27 @@ Recipes
 default
 -------
 
-Installs optipng from package manager ( Ubuntu at the moment ).
+Just an interface - calls out to a particular install recipe based on the install_method attribute
 
-source
+-------
+install_package
 -------
 
-Compiles opting from source.
+Installs optipng from package
+
+-------
+install_source
+-------
+
+Compiles optipng from source.
 
 
 Usage
 =====
 
 Include `recipe[optipng]` on systems where you want to install optipng.
-Include `recipe[optipng::source]` to compile from source. Make sure to update source attributes in that case.
+
+Set default['optipng']['install_method'] attribute to choose package ( default ) or source install.
 
 License and Author
 ==================
