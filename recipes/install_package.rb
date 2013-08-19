@@ -18,4 +18,8 @@
 # limitations under the License.
 #
 
-include_recipe "optipng::install_#{node['optipng']['install_method']}"
+include_recipe "optipng::repository" if node['optipng']['repository']
+
+package "optipng" do
+  action :upgrade
+end

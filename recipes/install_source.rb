@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+include_recipe "build-essential"
+
 src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/optipng-#{node['optipng']['source']['version']}.tar.gz"
 
 remote_file node['optipng']['source']['url'] do
@@ -40,4 +42,3 @@ bash "compile_optipng_source" do
     node['optipng']['source']['force_recompile'] == false && ::File.directory?(::File.dirname(src_filepath) + '/' + ::File.basename(src_filepath, ".tar.gz"))
   end
 end
-
